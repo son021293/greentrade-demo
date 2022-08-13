@@ -10,10 +10,10 @@ import {
     Text,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import GTLogo from "../assets/logo.svg";
+import GTLogo from "../../assets/logo.svg";
 import { IconWorld } from '@tabler/icons';
 
-const HEADER_HEIGHT = 60;
+const HEADER_HEIGHT = 80;
 
 const useStyles = createStyles((theme) => ({
     inner: {

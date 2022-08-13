@@ -1,9 +1,12 @@
 import { createStyles, Text, Container, ActionIcon, Group } from '@mantine/core';
 import { IconBrandTwitter, IconBrandYoutube, IconBrandInstagram } from '@tabler/icons';
-import GTLogo from "../assets/logo.svg";
+import GTLogo from "../../assets/logo.svg";
+import footerBg from "../../assets/footer-bg.png"
 
 const useStyles = createStyles((theme) => ({
     footer: {
+        background: 'linear-gradient(269.27deg, #2ADBA7 13.15%, #0A8A97 95.52%)',
+        color: theme.white,
         marginTop: 120,
         paddingTop: theme.spacing.xl * 2,
         paddingBottom: theme.spacing.xl * 2,
@@ -57,10 +60,11 @@ const useStyles = createStyles((theme) => ({
 
     link: {
         display: 'block',
-        color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[6],
-        fontSize: theme.fontSizes.sm,
-        paddingTop: 3,
-        paddingBottom: 3,
+        color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.white,
+        fontWeight: 600,
+        fontSize: theme.fontSizes.xs,
+        paddingTop: 7,
+        paddingBottom: 7,
 
         '&:hover': {
             textDecoration: 'underline',
@@ -72,23 +76,34 @@ const useStyles = createStyles((theme) => ({
         fontWeight: 700,
         fontFamily: `Greycliff CF, ${theme.fontFamily}`,
         marginBottom: theme.spacing.xs / 2,
-        color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+        color: theme.colorScheme === 'dark' ? theme.white : theme.white,
     },
 
     afterFooter: {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'end',
         alignItems: 'center',
         marginTop: theme.spacing.xl,
         paddingTop: theme.spacing.xl,
         paddingBottom: theme.spacing.xl,
-        borderTop: `1px solid ${
-            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-        }`,
+        // borderTop: `1px solid ${
+        //     theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
+        // }`,
 
         [theme.fn.smallerThan('sm')]: {
             flexDirection: 'column',
         },
+    },
+
+    footerBg: {
+        // background: `url(${footerBg})`,
+        // height: '100%',
+        // position: 'absolute',
+        // top: 0,
+        // bottom: 0,
+        // width: '100%',
+        // left: 0,
+        // z-index: -1
     },
 
     social: {
@@ -123,7 +138,7 @@ export function GreenTradeFooter({ data }: FooterLinksProps) {
 
         return (
             <div className={classes.wrapper} key={group.title}>
-                <Text className={classes.title}>{group.title}</Text>
+                {/*<Text className={classes.title}>{group.title}</Text>*/}
                 {links}
             </div>
         );
@@ -134,29 +149,51 @@ export function GreenTradeFooter({ data }: FooterLinksProps) {
             <Container className={classes.inner} size="xl">
                 <div className={classes.logo}>
                     <img src={GTLogo} alt="logo" />
-                    <Text size="xs" color="dimmed" className={classes.description}>
-                        Build fully functional accessible web applications faster than ever
+                    {/*<Text size="xs" color="dimmed" className={classes.description}>*/}
+                    {/*    Build fully functional accessible web applications faster than ever*/}
+                    {/*</Text>*/}
+                </div>
+
+                <div>
+                    <Text size="xl" weight={500} mb="29px">
+                        Strassburger Strasse 55 <br/>
+                        10405 Berlin <br/>
+                        Germany
+                    </Text>
+
+                    <Text size="sm" mb="29px">
+                        (434) 546-4356
+                    </Text>
+
+                    <Text<'a'>
+                        size="sm"
+                        component="a"
+                        href="mailto:infor@greentrade.com"
+                    >
+                        infor@greentrade.com
                     </Text>
                 </div>
+
                 <div className={classes.groups}>{groups}</div>
             </Container>
             <Container className={classes.afterFooter} size="xl">
-                <Text color="dimmed" size="sm">
-                    © 2020 mantine.dev. All rights reserved.
+                <Text color="dimmed" size="xs">
+                    © 2020 Greentrade. All rights reserved.
                 </Text>
 
-                <Group spacing={0} className={classes.social} position="right" noWrap>
-                    <ActionIcon size="lg">
-                        <IconBrandTwitter size={18} stroke={1.5} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <IconBrandYoutube size={18} stroke={1.5} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <IconBrandInstagram size={18} stroke={1.5} />
-                    </ActionIcon>
-                </Group>
+                {/*<Group spacing={0} className={classes.social} position="right" noWrap>*/}
+                {/*    <ActionIcon size="lg">*/}
+                {/*        <IconBrandTwitter size={18} stroke={1.5} />*/}
+                {/*    </ActionIcon>*/}
+                {/*    <ActionIcon size="lg">*/}
+                {/*        <IconBrandYoutube size={18} stroke={1.5} />*/}
+                {/*    </ActionIcon>*/}
+                {/*    <ActionIcon size="lg">*/}
+                {/*        <IconBrandInstagram size={18} stroke={1.5} />*/}
+                {/*    </ActionIcon>*/}
+                {/*</Group>*/}
             </Container>
+            <div className={classes.footerBg}/>
         </footer>
     );
 }
