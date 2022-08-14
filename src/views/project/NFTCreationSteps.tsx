@@ -1,4 +1,5 @@
 import {createStyles, Text, Group} from "@mantine/core";
+import React from "react";
 
 const useStyles = createStyles((theme) => ({
     steps: {
@@ -20,23 +21,26 @@ const useStyles = createStyles((theme) => ({
     },
 
     active: {
-        background: theme.colors.green[2]
+        background: theme.colors.green[2],
+        boxShadow: '17.3812px 17.3812px 52.1435px rgba(171, 242, 220, 0.8)'
     }
 }));
 
 interface NFTCreationStepsProps {
+    active: number
     steps: {
+        id: number;
         label: string;
         icon: any;
     }[];
 }
 
-export const NFTCreationSteps = ({steps} : NFTCreationStepsProps) => {
+export const NFTCreationSteps = ({steps, active} : NFTCreationStepsProps) => {
     const { classes, cx } = useStyles();
 
     return <div className={classes.steps}>
         {steps.map((step, i) => (
-            <div key={i} className={cx(classes.step, { [classes.active]: i === 0  })}>
+            <div key={i} className={cx(classes.step, { [classes.active]: step.id === active  })}>
                 <Group spacing={10}>
                     <img src={step.icon}/>
                     <Text size="xl">{step.label}</Text>

@@ -14,7 +14,7 @@ function App() {
             colorScheme: 'light',
             colors: {
                 white: ["#fff", "#f7f7f7"],
-                green: ["#22D6AC", "#58DBBA", "#0A8A97"],
+                green: ["#22D6AC", "#58DBBA", "#0A8A97", "#58dbba1a", "#58dbbacc", "#58DBBA", "#58DBBA"],
             },
             components: {
                 Header: {
@@ -24,9 +24,31 @@ function App() {
                         },
                     }),
                 },
+                Radio: {
+                    styles: (theme) => ({
+                        // radio: {
+                        //     height: 33,
+                        //     width: 33
+                        // },
+                        inner: {
+                            '& > input' : {
+                                borderWidth: 2,
+                                background: `${theme.white} !important`
+                            }
+                        },
+                        label: {
+                            color: '#5C5C5C',
+                            fontWeight: 500,
+                            // fontSize: 27
+                        },
+                        icon: {
+                            color: theme.colors.green[6]
+                        }
+                    })
+                }
 
             },
-            // primaryColor: 'white',
+            primaryColor: 'green',
             // colorScheme: 'light'
         }} withGlobalStyles withNormalizeCSS>
             <GreenTradeHeader links={[
@@ -51,7 +73,7 @@ function App() {
                     ]
                 },
                 {
-                    title: "123",
+                    title: "1234",
                     links: [
                         { link: "", label: "Facebook"},
                         { link: "", label: "Twitter"},
