@@ -24,6 +24,15 @@ function App() {
                         },
                     }),
                 },
+                Select: {
+                    styles: (theme) => ({
+                        input: {
+                            '&:focus-within': {
+                                borderWidth: 2
+                            }
+                        }
+                    })
+                },
                 Radio: {
                     styles: (theme) => ({
                         // radio: {
@@ -57,7 +66,7 @@ function App() {
                 { link: "", label: "Launchpad" },
             ]}/>
 
-            <Container size="xl">
+            <Container size="xl" mt={24}>
                 <NFTCreation/>
             </Container>
 

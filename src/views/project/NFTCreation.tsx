@@ -1,4 +1,4 @@
-import {Container, Text, Progress, Button} from "@mantine/core";
+import {Container, Text, Progress, Button, Group} from "@mantine/core";
 import {NFTCreationSteps} from "./NFTCreationSteps";
 import projectIcon from "../../assets/projects/project-icon.svg";
 import infoIcon from "../../assets/projects/info-icon.svg";
@@ -26,23 +26,26 @@ export const NFTCreation = ({}) => {
 
     console.log(activeStep)
     return <div>
-        <Text size={40} weight={500}>Create Project NFT</Text>
+        <Text mb={24} size={40} weight={500}>Create Project NFT</Text>
 
-        <Progress value={75} label="75%" size="xl" radius="xs" color="green.0" />
+        <Progress value={75} label="75%" size={30} radius="xs" color="green.0" mb={24}/>
 
         <NFTCreationSteps steps={steps} active={active}/>
 
         { activeStep?.component?.({}) }
 
-        <Button
-            size="lg"
-            variant="gradient"
-            styles={(theme) => ({
-                root: {
-                    background: 'linear-gradient(272.63deg, #2ADBA7 -50.38%, #0A8A97 141.6%)',
-                    boxShadow: '0px 1px 12px rgba(34, 214, 172, 0.4)'
-                },
-            })}
-        >Create Project NFT</Button>
+        <Group mt={24} position="right">
+            <Button
+                size="lg"
+                variant="gradient"
+                styles={(theme) => ({
+                    root: {
+                        background: 'linear-gradient(272.63deg, #2ADBA7 -50.38%, #0A8A97 141.6%)',
+                        boxShadow: '0px 1px 12px rgba(34, 214, 172, 0.4)'
+                    },
+                })}
+            >Create Project NFT</Button>
+        </Group>
+
     </div>
 }

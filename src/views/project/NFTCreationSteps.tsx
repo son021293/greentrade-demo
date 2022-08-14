@@ -5,7 +5,8 @@ const useStyles = createStyles((theme) => ({
     steps: {
         display: 'flex',
         justifyContent: 'space-between',
-        gap: '10px'
+        gap: '10px',
+        marginBottom: 24
     },
 
     step: {
@@ -42,8 +43,8 @@ export const NFTCreationSteps = ({steps, active} : NFTCreationStepsProps) => {
         {steps.map((step, i) => (
             <div key={i} className={cx(classes.step, { [classes.active]: step.id === active  })}>
                 <Group spacing={10}>
-                    <img src={step.icon}/>
-                    <Text size="xl">{step.label}</Text>
+                    <img width={25} height={25} src={step.icon}/>
+                    <Text size="lg">{step.label}</Text>
                 </Group>
             </div>
         ))}
