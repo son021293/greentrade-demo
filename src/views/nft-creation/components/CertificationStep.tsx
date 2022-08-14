@@ -13,81 +13,82 @@ const useStyles = createStyles((theme) => ({
     }
 }));
 
-export const CertificationStep = ({}) => {
+export const CertificationStep = ({ form } : any) => {
     const { classes } = useStyles()
 
     return <div className={classes.wrapper}>
         <FormGroup label="Certification Status">
             <Radio.Group
-                required
+                {...form.getInputProps('certificate.status')}
             >
-                <Radio value="react" label="React" />
-                <Radio value="svelte" label="Svelte" />
-                <Radio value="ng" label="Angular" />
-                <Radio value="vue" label="Vue" />
+                <Radio value="yes" label="Yes" />
+                <Radio value="pending" label="Pending" />
+                <Radio value="no" label="No" />
             </Radio.Group>
         </FormGroup>
 
         <FormGroup label="Certification">
             <Select
+                {...form.getInputProps('certificate.type')}
                 rightSection={<IconChevronDown size={14} />}
-                placeholder="Pick one"
+                placeholder="Select a certification"
                 data={[
-                    { value: 'react', label: 'React' },
-                    { value: 'ng', label: 'Angular' },
-                    { value: 'svelte', label: 'Svelte' },
-                    { value: 'vue', label: 'Vue' },
+                    { value: 'CER', label: 'Certified Emission Reduction (CER)' },
+                    { value: 'VCU', label: 'Verified Carbon Units (VCU) ' },
                 ]}
             />
         </FormGroup>
 
         <FormGroup label="Certificate Issued date">
-            <DatePicker placeholder="Pick date" required />
+            <DatePicker
+                {...form.getInputProps('certificate.issue_date')}
+                placeholder="Select Certificate Issued date" required
+            />
         </FormGroup>
 
         <FormGroup label="Token Issuer">
             <Select
+                {...form.getInputProps('certificate.token_issuer')}
                 rightSection={<IconChevronDown size={14} />}
                 placeholder="Select a Token Issuer"
                 data={[
-                    { value: 'react', label: 'React' },
-                    { value: 'ng', label: 'Angular' },
-                    { value: 'svelte', label: 'Svelte' },
-                    { value: 'vue', label: 'Vue' },
+                    { value: 'Gmbh', label: 'GreenTrade Impact GmbH' },
                 ]}
             />
         </FormGroup>
 
         <FormGroup label="Classification">
             <Radio.Group
+                {...form.getInputProps('certificate.classification')}
                 required
             >
-                <Radio value="react" label="Avoidance" />
-                <Radio value="svelte" label="Removal" />
-                {/*<Radio value="ng" label="Angular" />*/}
-                {/*<Radio value="vue" label="Vue" />*/}
+                <Radio value="avoidance" label="Avoidance" />
+                <Radio value="removal" label="Removal" />
             </Radio.Group>
         </FormGroup>
 
-        <FormGroup label="Classification">
+        <FormGroup label="Measurement">
             <TextInput
                 mb="xl"
-                label="Custom layout"
-                placeholder="Custom layout"
+                label="IoT Sensor"
+                placeholder="IoT Sensor"
+                {...form.getInputProps('certificate.measurement.sensor')}
                 // error="both below the input"
                 // inputWrapperOrder={['label', 'input', 'description', 'error']}
             />
             <TextInput
                 mb="xl"
-                label="Custom layout"
-                placeholder="Custom layout"
+                label="Geosatellite"
+                placeholder="Location XY..."
+                {...form.getInputProps('certificate.measurement.geo_satellite')}
                 // error="both below the input"
                 // inputWrapperOrder={['label', 'input', 'description', 'error']}
             />
             <TextInput
                 mb="xl"
-                label="Custom layout"
-                placeholder="Custom layout"
+                label="Drone Footage"
+                placeholder="Data XY"
+                {...form.getInputProps('certificate.measurement.drone_footage')}
                 // error="both below the input"
                 // inputWrapperOrder={['label', 'input', 'description', 'error']}
             />

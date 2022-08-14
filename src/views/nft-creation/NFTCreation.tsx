@@ -1,15 +1,45 @@
-import {Container, Text, Progress, Button, Group} from "@mantine/core";
+import {Container, Text, Progress, Button, Group, Code} from "@mantine/core";
+import Joi from 'joi';
+import { useForm, joiResolver } from '@mantine/form';
 import {NFTCreationSteps} from "./NFTCreationSteps";
+import {useMemo, useState} from "react";
+import {CertificationStep} from "./components/CertificationStep";
+
 import projectIcon from "../../assets/projects/project-icon.svg";
 import infoIcon from "../../assets/projects/info-icon.svg";
 import impactIcon from "../../assets/projects/impact-icon.svg";
 import certificateIcon from "../../assets/projects/certificate-icon.svg";
-import {useMemo, useState} from "react";
-import {CertificationStep} from "./components/CertificationStep";
+
+const schema = Joi.object({
+    certificate: {
+        status: Joi.string().required().messages({"any.required": `"username" is a required.`}),
+        // type: Joi.string().required().message('Type is required'),
+        // issue_date: Joi.string().required().message('Issue Date is required'),
+        // token_issuer: Joi.string().required().message('Token Issuer is required'),
+        // classification: Joi.string().required().message('Classification is required'),
+        measurement: {
+            // sensor: Joi.string().required().message('Sensor is required'),
+        }
+    }
+});
 
 export const NFTCreation = ({}) => {
 
     const [active, setActive] = useState(4)
+
+    const form = useForm({
+        validate: joiResolver(schema),
+        initialValues: {
+            certificate: {
+                status: '',
+                type: '',
+                issue_date: '',
+                token_issuer: '',
+                classification: '',
+                measurement: {}
+            }
+        }
+    })
 
     const steps = [
         { label: "Project Data", icon: projectIcon },
@@ -24,18 +54,21 @@ export const NFTCreation = ({}) => {
 
     const activeStep = useMemo(() => steps.find((step) => step.id === active), [ active ])
 
-    console.log(activeStep)
-    return <div>
+
+    return <>
         <Text mb={24} size={40} weight={500}>Create Project NFT</Text>
 
         <Progress value={75} label="75%" size={30} radius="xs" color="green.0" mb={24}/>
 
         <NFTCreationSteps steps={steps} active={active}/>
 
-        { activeStep?.component?.({}) }
+        { activeStep?.component?.({ form }) }
 
         <Group mt={24} position="right">
             <Button
+                onClick={() => {
+                    console.log(form.validate())
+                }}
                 size="lg"
                 variant="gradient"
                 styles={(theme) => ({
@@ -47,5 +80,6 @@ export const NFTCreation = ({}) => {
             >Create Project NFT</Button>
         </Group>
 
-    </div>
+        <Code block>{JSON.stringify(form.values, null, 2)}</Code>
+    </>
 }

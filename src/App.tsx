@@ -4,7 +4,7 @@ import './App.css';
 import {MantineProvider, Text} from '@mantine/core';
 import {GreenTradeHeader} from "./components/layout/GreenTradeHeader";
 import {GreenTradeFooter} from "./components/layout/GreenTradeFooter";
-import {NFTCreation} from "./views/project/NFTCreation";
+import {NFTCreation} from "./views/nft-creation/NFTCreation";
 import {Container} from "@mantine/core";
 
 function App() {
