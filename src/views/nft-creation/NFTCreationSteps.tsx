@@ -6,7 +6,11 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         gap: '10px',
-        marginBottom: 24
+        marginBottom: 24,
+
+        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+            flexDirection: 'column',
+        },
     },
 
     step: {

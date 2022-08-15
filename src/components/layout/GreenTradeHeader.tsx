@@ -38,13 +38,19 @@ const useStyles = createStyles((theme) => ({
     },
 
     links: {
-        [theme.fn.smallerThan('sm')]: {
+        [theme.fn.smallerThan('md')]: {
             display: 'none',
         },
     },
 
     burger: {
-        [theme.fn.largerThan('sm')]: {
+        [theme.fn.largerThan('md')]: {
+            display: 'none',
+        },
+    },
+
+    languages: {
+        [theme.fn.smallerThan('md')]: {
             display: 'none',
         },
     },
@@ -71,11 +77,13 @@ const useStyles = createStyles((theme) => ({
 
 interface GreenTradeHeaderProps {
     links: { link: string; label: string; links?: { link: string; label: string }[] }[];
+    opened: boolean,
+    setOpened: (a:boolean) => void
 }
 
-export function GreenTradeHeader({ links }: GreenTradeHeaderProps) {
+export function GreenTradeHeader({ links, opened, setOpened }: GreenTradeHeaderProps) {
     const { classes } = useStyles();
-    const [opened, { toggle }] = useDisclosure(false);
+    // const [opened, { toggle }] = useDisclosure(false);
     const items = links.map((link) => {
         const menuItems = link.links?.map((item) => (
             <Menu.Item key={item.link}>{item.label}</Menu.Item>
@@ -130,7 +138,7 @@ export function GreenTradeHeader({ links }: GreenTradeHeaderProps) {
         }}>
             <Container size="xl" className={classes.inner}>
                 <Group>
-                    <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+                    <Burger opened={opened} onClick={() => setOpened(!opened)} className={classes.burger} size="sm" />
                     <img src={GTLogo} alt="logo" />
                     {/*<GTLogo/>*/}
                 </Group>
@@ -138,7 +146,7 @@ export function GreenTradeHeader({ links }: GreenTradeHeaderProps) {
                     {items}
                 </Group>
                 <Group>
-                    <Group spacing={1}>
+                    <Group spacing={1} className={classes.languages}>
                         <IconWorld color="white"/>
                         <Text>EN</Text>
                     </Group>

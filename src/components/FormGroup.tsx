@@ -7,11 +7,15 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         alignItems: 'start',
         justifyContent: 'space-between',
-        paddingBottom: 5,
+        paddingBottom: 15,
         marginBottom: 42,
         '&:not(:last-child)': {
             borderBottom: '1px solid #D9D9D9',
-        }
+        },
+
+        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+            flexDirection: 'column',
+        },
     },
     label: {
         fontSize: theme.fontSizes.xl,
@@ -19,7 +23,12 @@ const useStyles = createStyles((theme) => ({
         color: theme.colors.green[2]
     },
     content: {
-        width: 500
+        width: 500,
+
+        [`@media (max-width: ${theme.breakpoints.md}px)`]: {
+            marginTop: 16,
+            width: '100%'
+        }
     }
 }));
 

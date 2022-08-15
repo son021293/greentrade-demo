@@ -22,8 +22,13 @@ const useStyles = createStyles((theme) => ({
         [theme.fn.smallerThan('sm')]: {
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
+            marginBottom: 16
+            // alignItems: 'center',
         },
+    },
+
+    info: {
+        marginBottom: 16
     },
 
     description: {
@@ -41,7 +46,7 @@ const useStyles = createStyles((theme) => ({
 
         [theme.fn.smallerThan('sm')]: {
             flexDirection: 'column',
-            alignItems: 'center',
+            // alignItems: 'center',
         },
     },
 
@@ -49,9 +54,9 @@ const useStyles = createStyles((theme) => ({
         display: 'flex',
         flexWrap: 'wrap',
 
-        [theme.fn.smallerThan('sm')]: {
-            display: 'none',
-        },
+        // [theme.fn.smallerThan('sm')]: {
+        //     display: 'none',
+        // },
     },
 
     wrapper: {
@@ -154,7 +159,7 @@ export function GreenTradeFooter({ data }: FooterLinksProps) {
                     {/*</Text>*/}
                 </div>
 
-                <div>
+                <div className={classes.info}>
                     <Text size="xl" weight={500} mb="29px">
                         Strassburger Strasse 55 <br/>
                         10405 Berlin <br/>

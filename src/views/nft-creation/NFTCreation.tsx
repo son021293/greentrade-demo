@@ -28,7 +28,11 @@ const schema = Joi.object({
             "string.empty": 'Classification is required'
         }),
         measurement: {
-            // sensor: Joi.string().required().message('Sensor is required'),
+            sensor: Joi.string().required().messages({
+                "string.empty": 'Sensor is required'
+            }),
+            geo_satellite: Joi.string(),
+            drone_footage: Joi.string(),
         }
     }
 });
@@ -77,7 +81,10 @@ export const NFTCreation = ({}) => {
         <Group mt={24} position="right">
             <Button
                 onClick={() => {
-                    console.log(form.validate())
+                    if(form.validate().hasErrors) {
+                        return;
+                    }
+                    alert(JSON.stringify(form.values, null, 2))
                 }}
                 size="lg"
                 variant="gradient"
@@ -90,6 +97,6 @@ export const NFTCreation = ({}) => {
             >Create Project NFT</Button>
         </Group>
 
-        <Code block>{JSON.stringify(form.values, null, 2)}</Code>
+        {/*<Code block>{JSON.stringify(form.values, null, 2)}</Code>*/}
     </>
 }

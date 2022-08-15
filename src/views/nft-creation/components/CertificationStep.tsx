@@ -73,24 +73,18 @@ export const CertificationStep = ({ form } : any) => {
                 label="IoT Sensor"
                 placeholder="IoT Sensor"
                 {...form.getInputProps('certificate.measurement.sensor')}
-                // error="both below the input"
-                // inputWrapperOrder={['label', 'input', 'description', 'error']}
             />
             <TextInput
                 mb="xl"
                 label="Geosatellite"
                 placeholder="Location XY..."
-                {...form.getInputProps('certificate.measurement.geo_satellite')}
-                // error="both below the input"
-                // inputWrapperOrder={['label', 'input', 'description', 'error']}
+                {...form.getInputProps('certificate.measurement.geo_satellite', { withError: false })}
             />
             <TextInput
                 mb="xl"
                 label="Drone Footage"
                 placeholder="Data XY"
                 {...form.getInputProps('certificate.measurement.drone_footage')}
-                // error="both below the input"
-                // inputWrapperOrder={['label', 'input', 'description', 'error']}
             />
 
             <Button>Other Measurement</Button>
