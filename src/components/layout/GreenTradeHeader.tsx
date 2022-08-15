@@ -12,8 +12,22 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import GTLogo from "../../assets/logo.svg";
 import { IconWorld } from '@tabler/icons';
+import { useEffect } from "react";
+import { hooks, metaMask } from "../../utils/connectors/metaMask";
+import truncateHash from "../../utils/truncateHash";
 
 const HEADER_HEIGHT = 80;
+
+const {
+    useChainId,
+    useAccounts,
+    useError,
+    useIsActivating,
+    useIsActive,
+    useProvider,
+    useENSNames
+} = hooks;
+
 
 const useStyles = createStyles((theme) => ({
     inner: {
@@ -98,6 +112,17 @@ export function GreenTradeHeader({ links }: GreenTradeHeaderProps) {
         );
     });
 
+    const chainId = useChainId();
+    const accounts = useAccounts();
+    const error = useError();
+    const isActivating = useIsActivating();
+    const isActive = useIsActive();
+
+    // attempt to connect eagerly on mount
+    useEffect(() => {
+        metaMask?.connectEagerly();
+    }, []);
+
     return (
         <Header height={HEADER_HEIGHT} sx={{
             borderBottom: 0,
@@ -117,9 +142,29 @@ export function GreenTradeHeader({ links }: GreenTradeHeaderProps) {
                         <IconWorld color="white"/>
                         <Text>EN</Text>
                     </Group>
-                    <Button color="white.0" sx={{ height: 30 }}>
-                        <Text color="green.0">Login</Text>
-                    </Button>
+
+                    {isActive ? (
+                        <Group>
+                            {accounts ? truncateHash(accounts[0]) : null}
+                            <Button color="white.0" sx={{ height: 30 }} onClick={() => metaMask.deactivate()}>
+                                <Text color="green.0">Logout</Text>
+                            </Button>
+                        </Group>
+                    ) : (
+                        <Button
+                            disabled={isActivating}
+                            color="white.0" sx={{ height: 30 }}
+                            onClick={() => {
+                                if(error) {
+                                    alert(error.message)
+                                    return;
+                                }
+
+                                metaMask.activate();
+                            }}>
+                            <Text color="green.0">Login</Text>
+                        </Button>
+                    )}
                 </Group>
 
             </Container>

@@ -12,11 +12,21 @@ import certificateIcon from "../../assets/projects/certificate-icon.svg";
 
 const schema = Joi.object({
     certificate: {
-        status: Joi.string().required().messages({"any.required": `"username" is a required.`}),
-        // type: Joi.string().required().message('Type is required'),
-        // issue_date: Joi.string().required().message('Issue Date is required'),
-        // token_issuer: Joi.string().required().message('Token Issuer is required'),
-        // classification: Joi.string().required().message('Classification is required'),
+        status: Joi.string().required().messages({
+            "string.empty": "Status is required!!",
+        }),
+        type: Joi.string().required().messages({
+            "string.empty": "Type is required!!",
+        }),
+        issue_date: Joi.date().iso().required().messages({
+            'date.format.iso': 'ISO 8601 date',
+        }),
+        token_issuer: Joi.string().required().messages({
+            "string.empty": 'Token Issuer is required'
+        }),
+        classification: Joi.string().required().messages({
+            "string.empty": 'Classification is required'
+        }),
         measurement: {
             // sensor: Joi.string().required().message('Sensor is required'),
         }
