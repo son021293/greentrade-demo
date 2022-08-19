@@ -68,6 +68,18 @@ export const NFTCreation = ({}) => {
 
     const activeStep = useMemo(() => steps.find((step) => step.id === active), [ active ])
 
+    const submit = (data: any) => {
+        fetch(
+            `https://abv.xxx`,
+            {
+                body: JSON.stringify(data),
+                method: "POST",
+                headers: {
+                    contentType: "application/json"
+                }
+            }
+        )
+    }
 
     return <>
         <Text mb={24} size={40} weight={500}>Create Project NFT</Text>
@@ -84,7 +96,9 @@ export const NFTCreation = ({}) => {
                     if(form.validate().hasErrors) {
                         return;
                     }
-                    alert(JSON.stringify(form.values, null, 2))
+
+                    submit(form.values)
+                    // alert(JSON.stringify(form.values, null, 2))
                 }}
                 size="lg"
                 variant="gradient"
